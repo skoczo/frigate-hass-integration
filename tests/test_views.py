@@ -722,7 +722,7 @@ async def test_auth_headers_are_sent_to_frigate_server(
     config_entry = create_mock_frigate_config_entry(
         hass,
         entry_id="private_id",
-        data={CONF_URL: str(local_frigate.server.make_url("/"))},
+        data={CONF_URL: str(local_frigate.server.make_url("/")), "validate_ssl": True},
     )
     config: dict[str, Any] = copy.deepcopy(TEST_CONFIG)
     config[ATTR_MQTT][ATTR_CLIENT_ID] = "private_id"
@@ -766,7 +766,7 @@ async def test_auth_headers_are_sent_to_frigate_server_with_ssl_validate_false(
     config_entry = create_mock_frigate_config_entry(
         hass,
         entry_id="private_id",
-        data={CONF_URL: str(local_frigate.server.make_url("/")), 'validate_ssl': False},
+        data={CONF_URL: str(local_frigate.server.make_url("/")), "validate_ssl": False},
     )
     config: dict[str, Any] = copy.deepcopy(TEST_CONFIG)
     config[ATTR_MQTT][ATTR_CLIENT_ID] = "private_id"
